@@ -451,7 +451,7 @@
 
   <!-- SETUP VIEW -->
   <div id="setup-view">
-    <div class="section-label">📝 Your Word List</div>
+    <div class="section-label">📝 Word Pool (10 random words each round)</div>
     <div class="word-list-area">
       <div class="word-tags" id="word-tags"></div>
       <div class="add-word-row">
@@ -556,7 +556,14 @@
   // ──────────────────────────────────────────────────────────────────
 
   // Default word list
-  let wordList = ['apple', 'happy', 'friend', 'school', 'pretty', 'funny', 'night', 'light'];
+  const WORDS_PER_ROUND = 10;
+  let wordList = [
+    'apple', 'happy', 'friend', 'school', 'pretty', 'funny', 'night', 'light',
+    'because', 'could', 'would', 'should', 'people', 'water', 'mother', 'father',
+    'brother', 'sister', 'family', 'house', 'garden', 'flower', 'animal', 'monster',
+    'rabbit', 'turtle', 'yellow', 'purple', 'orange', 'green', 'sunny', 'rainy',
+    'window', 'kitchen', 'bridge', 'castle', 'dragon', 'planet', 'rocket', 'island'
+  ];
   let shuffled = [];
   let currentIndex = 0;
   let correctCount = 0;
@@ -606,7 +613,8 @@
   }
 
   function startGame() {
-    shuffled = shuffle(wordList);
+    // Pick 10 random words each round (or all of them if the list is shorter)
+    shuffled = shuffle(wordList).slice(0, WORDS_PER_ROUND);
     currentIndex = 0;
     correctCount = 0;
     wrongCount = 0;
